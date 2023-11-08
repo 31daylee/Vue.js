@@ -5,6 +5,7 @@ import MyComponent3 from "./components/MyComponent3.vue";
 import OptionComponent1 from "./components/OptionComponent1.vue";
 import OptionComponent2 from "./components/OptionComponent2.vue";
 import OptionComponent3 from "./components/OptionComponent3.vue";
+import OptionComponent4 from "./components/OptionComponent4.vue";
 </script>
 
 <template>
@@ -20,6 +21,7 @@ import OptionComponent3 from "./components/OptionComponent3.vue";
   <OptionComponent1 />
   <OptionComponent2 />
   <OptionComponent3 />
+  <OptionComponent4 />
 
   <h4>3. Component 통신</h4>
 
