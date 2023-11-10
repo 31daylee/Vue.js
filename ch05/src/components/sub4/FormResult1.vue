@@ -1,8 +1,8 @@
 <script setup>
 import { reactive } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 
-const router = useRouter();
+const router = useRoute();
 const user = router.query;
 </script>
 <template>
