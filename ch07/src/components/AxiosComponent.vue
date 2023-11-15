@@ -1,4 +1,5 @@
 <script setup>
+import { ref, reactive } from "vue";
 import axios from "axios";
 
 const users = ref([]); /* 상태값을 반응형 변수로 만들기 */
