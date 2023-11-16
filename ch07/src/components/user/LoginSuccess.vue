@@ -18,12 +18,38 @@ const btnLogout = () => {
 };
 
 const btnGetUsers = async () => {
-  const accessToken = authStore.getAccessToken;
+  try {
+    const accessToken = authStore.getAccessToken;
 
-  const response = await axios.get("http://localhost:8080/Ch11/users", {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
-  console.log(JSON.stringify(response));
+    const response = await axios.get("http://localhost:8080/Ch11/users", {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+
+    console.log(JSON.stringify(response));
+    users.data = response.data;
+  } catch (err) {
+    console.log("err : " + JSON.stringify(err));
+    // refresh 토큰을 전송해서 access 토큰 갱신
+    sendRefreshToken();
+  }
+};
+const sendRefreshToken = async () => {
+  const refreshToken = authStore.getRefreshToken;
+  try {
+    const response = await axios.get(
+      "http://localhost:8080/Ch11/refreshToken",
+      {
+        headers: { Authorization: `Bearer ${refreshToken}` },
+      }
+    );
+    // Access 토큰 갱신
+    authStore.setAccessToken(response.data);
+    console.log(JSON.stringify(response));
+  } catch (err) {
+    // 최종적으로 Refresh 토큰에서 에러가 발생하면 로그인 시킴
+    authStore.logout();
+    router.push("/jwt/login");
+  }
 };
 
 // 컴포넌트 생명주기 훅
